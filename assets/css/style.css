@@ -8,6 +8,10 @@
     src: url('../fonts/bellota/Bellota-BoldItalic.otf')
 }
 
+body {
+    line-height: 17px;
+}
+
 .top-bar {
     width: 100%;
     min-width: 1050px;
@@ -18,7 +22,16 @@
     display: inline-flex;
 }
 
-.logo {
+.logo a {
     font-family: "Bellota-BoldItalic", sans-serif;
     margin-left: 10px;
+    font-size: 30;
+    position: relative;
+    top: 9px;
+    text-shadow: #73B6E2 0.5px 0.5px 0px;
+    color: #1086BA;
+}
+
+a:hover {
+    text-decoration: none;
 }
