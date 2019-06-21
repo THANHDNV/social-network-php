@@ -43,7 +43,7 @@
                         }
                     ?>" required>
                     <br />
-                    <input type='text' name='log_password' placeholder='Password'>
+                    <input type='password' name='log_password' placeholder='Password'>
                     <br/>
                     <input type='submit' name='login_button' value='Login'>
                     <?php if (isset($errors['login'])) echo ($errors['login']) ?>
