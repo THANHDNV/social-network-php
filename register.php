@@ -90,7 +90,7 @@
                     <?php if (isset($errors['reg_password2'])) echo ($errors['reg_password2']) ?>
                     <input type='submit' name='reg_button' value='Register'>
                     <br>
-                    <?php if (isset($errors['success'])) echo ('<br>' . $errors['success']) ?>
+                    <?php if (isset($errors['success'])) echo ($errors['success']) .'<br>' ?>
                     <a href='#' id='signin' class='signin'>Already have an account? Sign in here!</a>
                 </form>
             </div>

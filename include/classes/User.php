@@ -38,5 +38,13 @@
                 return false;
             }
         }
+
+        public function getUserDetail() {
+            $username = $this->user['username'];
+            $user_details_query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$username'");
+            $row = mysqli_fetch_array($user_details_query);
+            $this->user = $row;
+            return $row;
+        }
     }
 ?>

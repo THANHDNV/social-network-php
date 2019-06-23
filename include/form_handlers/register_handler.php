@@ -75,12 +75,13 @@
             $check_username_query = mysqli_query($con, "SELECT username from users WHERE username='$username'");
 
             $i = 0;
+            $username_tmp = $username;
             while(mysqli_num_rows($check_username_query) != 0) {
                 $i++;
                 $username_tmp = $username . '_' . $i;
                 $check_username_query = mysqli_query($con, "SELECT username from users WHERE username='$username_tmp'");
             }
-            $username = $username . '_' . $i;
+            $username = $username_tmp;
 
             $rand = rand(1, 2);
 
