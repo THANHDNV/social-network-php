@@ -46,7 +46,7 @@
                     <input type='password' name='log_password' placeholder='Password'>
                     <br/>
                     <input type='submit' name='login_button' value='Login'>
-                    <?php if (isset($errors['login'])) echo ($errors['login']) ?>
+                    <?php if (isset($errors['login'])) echo ('<br>' . $errors['login']) ?>
                     <br>
                     <a href='#' id='signup' class='signup'>Need an account? Register here!</a>
                 </form>
