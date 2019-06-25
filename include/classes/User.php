@@ -20,6 +20,13 @@
             return $row['num_posts'];
         }
 
+        public function getProfilePic() {
+            $username = $this->user['username'];
+            $query = mysqli_query($this->con, "SELECT profile_pic FROM users WHERE username='$username'");
+            $row = mysqli_fetch_array($query);
+            return $row['profile_pic'];
+        }
+
         public function getFirstAndLastName() {
             $username = $this->user['username'];
             $query = mysqli_query($this->con, "SELECT first_name, last_name FROM users WHERE username='$username'");
