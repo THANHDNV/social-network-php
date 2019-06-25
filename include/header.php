@@ -1,5 +1,8 @@
 <?php
     require_once 'config/config.php';
+    include_once("include/classes/User.php");
+    include_once("include/classes/Post.php");
+    
     if (isset($_SESSION['username'])) {
         $userLoggedIn = $_SESSION['username'];
         $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");

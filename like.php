@@ -1,7 +1,5 @@
 <?php
     require_once 'config/config.php';
-    include_once("include/classes/User.php");
-    include_once("include/classes/Post.php");
     
     if (isset($_SESSION['username'])) {
         $userLoggedIn = $_SESSION['username'];
@@ -26,7 +24,7 @@
         body {
             background-color: white;
         }
-        .newsfeedPostOptions form {
+        form {
             position: absolute;
             top: 0px;
         }
@@ -44,12 +42,12 @@
     $total_likes = $row['likes'];
     $user_liked = $row['added_by'];
 
-    $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$user_liked");
+    $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$user_liked'");
     $row = mysqli_fetch_array($user_details_query);
     $total_user_likes = $row['num_likes'];
 
     //like button
-    if (isset($_GET['like_button'])) {
+    if (isset($_POST['like_button'])) {
         $total_likes++;
         $query = mysqli_query($con, "UPDATE posts SET likes='$total_likes' WHERE id='$post_id'");
         $total_user_likes++;
@@ -61,7 +59,7 @@
 
     //unlike button
 
-    if (isset($_GET['unlike_button'])) {
+    if (isset($_POST['unlike_button'])) {
         $total_likes--;
         $query = mysqli_query($con, "UPDATE posts SET likes='$total_likes' WHERE id='$post_id'");
         $total_user_likes--;
@@ -78,7 +76,7 @@
         echo '<form action="like.php?post_id='. $post_id . '" method="POST">
             <input type="submit" class="comment_like" name="unlike_button" value="Unlike">
             <div class="like_value">
-                ' . $total_likes . ' Likes
+                ' . $total_likes . ' Unlikes
             </div>
         </form>';
     } else {

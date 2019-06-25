@@ -66,7 +66,7 @@
 
     <?php
 
-        $get_comments = mysqli_query($con, "SELECT * FROM comments WHERE post_id='$post_id' ORDER BY if DESC");
+        $get_comments = mysqli_query($con, "SELECT * FROM comments WHERE post_id='$post_id' ORDER BY id DESC");
         $count = mysqli_num_rows($get_comments);
 
         if ($count != 0) {
