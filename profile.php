@@ -36,7 +36,7 @@
         <form action="<?php echo $username ?>" method="POST">
             <?php
                 $profile_user_obj = new User($con, $username);
-                if ($profile_user_obj->isClosedI()) {
+                if ($profile_user_obj->isClosed()) {
                     header("Location: user_closed.php");
                 }
 
@@ -45,29 +45,27 @@
                 if ($userLoggedIn != $username) {
                     
                     if ($logged_in_user_obj->isFriend($username)) {
-                        echo '<input type="submit" name="remove_friend" class="danger" value="Remove Friend"><br>';
+                        echo '<input type="submit" name="remove_friend" class="danger" value="Remove Friend">';
                     } else if ($logged_in_user_obj->didReceiveRequest($username)) {
-                        echo '<input type="submit" name="respond_request" class="warning" value="Respond to Request"><br>';
+                        echo '<input type="submit" name="respond_request" class="warning" value="Respond to Request">';
                     } else if ($logged_in_user_obj->didSendRequest($username)) {
-                        echo '<input type="submit" name="" class="default" value="Request Sent"><br>';
+                        echo '<input type="submit" name="" class="default" value="Request Sent">';
                     } else {
-                        echo '<input type="submit" name="add_friend" class="success" value="Add Friend"><br>';
+                        echo '<input type="submit" name="add_friend" class="success" value="Add Friend">';
                     }
                     
                 }
             ?>
-            <input type="submit" class="deep_blue" data-toggle="modal" data-target="post_form" value="Post Something">
-
-            <?php
-
-                if ($userLoggedIn != $username) {
-                    echo '<div class="profile_info_bottom">';
-                    echo $logged_in_user_obj->getMutualFriends($username);
-                    echo ' mutual friends</div>';
-                }
-
-            ?>
         </form>
+        <input type="submit" class="deep-blue" data-toggle="modal" data-target="#post_form" value="Post Something">
+        <?php
+            if ($userLoggedIn != $username) {
+                echo '<div class="profile_info_bottom">';
+                echo $logged_in_user_obj->getMutualFriends($username);
+                echo ' mutual friends</div>';
+            }
+            
+        ?>
     </div>
     <div class='profile-main-column column'>
         <div class='posts_area'></div>

@@ -100,7 +100,7 @@
                         function toggle<?php echo $id; ?>() {
                             var target = $(event.target)
 
-                            if (target.is("a")) {
+                            if (target.is("a") || target.is("button")) {
                                 return;
                             }
 
@@ -201,6 +201,7 @@
 
                 $(document).ready(function() {
                     $('#post<?php echo $id; ?>').on('click', function() {
+                        console.log(<?php echo $id; ?>)
                         bootbox.confirm("Are you sure you want to delete this post?", function(result) {
                             $.post("include/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {result: result});
 
@@ -241,7 +242,7 @@
             }
 
             $str = '';
-            $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND ((added_by='$profileUser' AND user_to='none') || OR user_to='$profileUser') ORDER BY id desc");
+            $data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND ((added_by='$profileUser' AND user_to='none') OR user_to='$profileUser') ORDER BY id desc");
 
             if (mysqli_num_rows($data_query) > 0) {
 
@@ -281,7 +282,7 @@
                         function toggle<?php echo $id; ?>() {
                             var target = $(event.target)
 
-                            if (target.is("a")) {
+                            if (target.is("a") || target.is("button")) {
                                 return;
                             }
 
@@ -376,25 +377,26 @@
                             <iframe src='comment_frame.php?post_id=$id' id='comment$id" . "_frame' class='comment_frame' frameborder='0'></iframe>
                         </div>
                         <hr>";
-                }
-                ?>
-                <script>
-
-                $(document).ready(function() {
-                    $('#post<?php echo $id; ?>').on('click', function() {
-                        bootbox.confirm("Are you sure you want to delete this post?", function(result) {
-                            $.post("include/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {result: result});
-
-                            if (result) {
-                                location.reload();
-                            }
+                        ?>
+                        <script>
+        
+                        $(document).ready(function() {
+                            $('#post<?php echo $id; ?>').on('click', function() {
+                                console.log(<?php echo $id; ?>)
+                                bootbox.confirm("Are you sure you want to delete this post?", function(result) {
+                                    $.post("include/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {result: result});
+        
+                                    if (result) {
+                                        location.reload();
+                                    }
+                                })
+                            })
                         })
-                    })
-                })
-
-                </script>
-
-                <?php
+        
+                        </script>
+        
+                        <?php
+                }
             }
 
             if ($count > $limit) {

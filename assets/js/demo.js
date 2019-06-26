@@ -4,9 +4,10 @@ $(document).ready(function() {
             method: 'POST',
             url: 'include/handlers/ajax_submit_profile_post.php',
             data: $('form.profile_post').serialize(),
-            success: function() {
+            success: function(message) {
+                console.log(message)
                 $('#post_form').modal('hide')
-                location.reload();
+                // location.reload();
             },
             error: function() {
                 alert('Failure')

@@ -269,7 +269,7 @@ textarea:focus {
     background-color: #e74c3c;
 }
 
-.wanrning {
+.warning {
     background-color: #f0ad4e;
 }
 
@@ -289,7 +289,7 @@ textarea:focus {
     background-color: #0043f0;
 }
 
-.profile_left input[type='submit']  {
+.profile_left input[type='submit'] {
     width: 90%;
     height: 30px;
     border-radius: 5px;
@@ -299,7 +299,7 @@ textarea:focus {
 }
 
 #accept_button, #ignore_button {
-    width: 20px;
+    width: 20%;
     height: 28px;
     border-radius: 5px;
     margin: 7px 0 0 7px;

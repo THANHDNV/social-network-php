@@ -23,20 +23,20 @@
                     $add_friend_query = mysqli_query($con, "UPDATE users SET friend_array=CONCAT(friend_array, '$user_from', ',') WHERE username='$userLoggedIn'");
                     $add_friend_query = mysqli_query($con, "UPDATE users SET friend_array=CONCAT(friend_array, '$userLoggedIn', ',') WHERE username='$user_from'");
 
-                    $delete_query = mysqli_query($con, "DELETE FROM friend_requests WHERE user_to='$userLoggedIn' AND user_from='$user_from");
+                    $delete_query = mysqli_query($con, "DELETE FROM friend_requests WHERE user_to='$userLoggedIn' AND user_from='$user_from'");
                     echo 'You are now friend!';
-                    header('Location: request.php');
+                    header('Location: requests.php');
                 }
 
                 if (isset($_POST['ignore_request' . $user_from])) {
-                    $delete_query = mysqli_query($con, "DELETE FROM friend_requests WHERE user_to='$userLoggedIn' AND user_from='$user_from");
+                    $delete_query = mysqli_query($con, "DELETE FROM friend_requests WHERE user_to='$userLoggedIn' AND user_from='$user_from'");
                     echo 'Request ignored!';
-                    header('Location: request.php');
+                    header('Location: requests.php');
                 }
 
                 ?>
 
-                <form action="request.php" method="POST">
+                <form action="requests.php" method="POST">
                     <input type="submit" value="Accept" name='accept_request<?php echo $user_from; ?>' id='accept_button' class='success'>
                     <input type="submit" value="Ignore" name='ignore_request<?php echo $user_from; ?>' id='ignore_button' class='danger'>
                 </form>

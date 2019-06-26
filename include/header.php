@@ -21,11 +21,14 @@
     <link rel='stylesheet' type='text/css' href='assets/css/bootstrap.min.css'>
     <link rel='stylesheet' type='text/css' href='assets/css/style.css'>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='assets/css/jquery.Jcrop.css'>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src='assets/js/bootstrap.bundle.min.js'></script>
     <script src="assets/js/bootbox.min.js"></script>
     <script src='assets/js/demo.js'></script>
+    <script src='assets/js/jquery.jcrop.js'></script>
+    <script src="assets/js/jcrop_bits.js"></script>
     
     <title>Welcome to Swiftfeed</title>
 </head>
@@ -48,7 +51,7 @@
             <a href='#'>
                 <i class="fa fa-bell-o fa-lg"></i>
             </a>
-            <a href='#'>
+            <a href='requests.php'>
                 <i class="fa fa-users fa-lg"></i>
             </a>
             <a href='#'>
