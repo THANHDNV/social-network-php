@@ -306,3 +306,24 @@ textarea:focus {
     border: none;
     color: white;
 }
+
+.delete_button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+    float:right;
+    border-radius: 4px;
+    right: -15px;
+    position: relative;
+}
+
+.profile-main-column {
+    min-width: 675px;
+    float: left;
+    width: 70%;
+    z-index: -1;
+}
+
+.profile_info_bottom {
+    margin: 10px 0 0 7px;
+}
