@@ -47,7 +47,7 @@
 <div class="main-column column" id='main-column'>
     <?php
         if ($user_to != "new") {
-            echo '<h4>You and <a href="$user_to">' . $user_to_obj->getFirstAndLastName() . '</a></h4><hr><br> ';
+            echo '<h4>You and <a href="' . $user_to . '">' . $user_to_obj->getFirstAndLastName() . '</a></h4><hr><br> ';
             echo "<div class='loaded_messages' id='scroll_messages'>";
             echo $message_obj->getMessages($user_to);
             echo '</div>';
@@ -60,7 +60,7 @@
                 <?php
                     if ($user_to == 'new') {
                         echo "Select the friend you would like to message <br><br>";
-                        echo "To: <input type='text' onkeyUp='getUser(this.value,<?php echo $userLoggedIn ?>' name='q' plzceholder='Name' autocomplete='off' id='search_text_input' >";
+                        echo "To: <input type='text' onkeyUp='getUser(this.value,\"" . $userLoggedIn . "\")' name='q' placeholder='Name' autocomplete='off' id='search_text_input' >";
                         echo "<div class='results'></div>";
                     } else {
                         echo '<textarea name="message_body" id="message_textarea" placeholder="Write your message..."></textarea>';
@@ -76,7 +76,7 @@
         </script>
 </div>
 
-<div class='user_details column id='conversations>
+<div class='user-details column' id='conversations'>
     <h4>Conversations</h4>
     <div class='loaded_conversations'>
         <?php echo $message_obj->getConversations() ?>

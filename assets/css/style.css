@@ -333,6 +333,7 @@ textarea:focus {
     margin-right: 8px;
     border: 1px solid #d3d3d3;
     font-size: 12px;
+    border-radius: 5px;
 }
 
 #message_submit {
@@ -342,6 +343,7 @@ textarea:focus {
     border: none;
     background-color: #20aae5;
     color: white;
+    position: absolute;
     border-radius: 5px;
     font-family: "Bellota-BoldItalic", sans-serif;
 }
@@ -358,14 +360,14 @@ textarea:focus {
     background-color: #3498db;
     border-color: #2980b9;
     float: right;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .message#green {
     background-color: #2ecc71;
     border-color: #27ae60;
     float: left;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .loaded_messages {
@@ -391,10 +393,50 @@ textarea:focus {
 }
 
 .user_found_messages img {
-    height: 35p;
+    height: 35px;
     float: left;
 }
 
 #grey {
     color: #8c8c8c;
+}
+
+.resultDisplay {
+    padding: 5px 5px 0 5px;
+    height: 60px;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.resultDisplay a {
+    float: none;
+}
+
+.resultDisplay:hover {
+    background-color: #ebebeb;
+    text-decoration: none;
+}
+
+.liveSearchProfilePic img {
+    height: 50px;
+    border-radius: 25px;
+    margin: 1px 12px 0 2px;
+    float: left
+}
+.liveSearchText {
+    background-color: transparent;
+    color: #1e96ca;
+}
+
+.liveSearchText p{
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+#profile_nav {
+    float: none;
+    background-color: transparent;
+}
+
+#profile_nav a:hover {
+    border-bottom: none;
 }

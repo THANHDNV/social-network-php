@@ -1,5 +1,5 @@
 <?php
-    include_once('./User.php');
+    include_once('User.php');
     class Message {
         private $user_obj;
         private $con;
@@ -10,9 +10,9 @@
         }
 
         public function getMostRecentUser() {
-            $userLoggedIn = $this->user->getUsername();
+            $userLoggedIn = $this->user_obj->getUsername();
 
-            $query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn' ORDER BY id DESC LIMIT 1)");
+            $query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn' ORDER BY id DESC LIMIT 1");
 
             if (mysqli_num_rows($query) == 0) {
                 return false;
@@ -23,9 +23,9 @@
             $user_from = $row['user_from'];
 
             if ($user_to == $userLoggedIn) {
-                return $user_to;
-            } else {
                 return $user_from;
+            } else {
+                return $user_to;
             }
         }
 
@@ -44,7 +44,6 @@
             $query = mysqli_query($this->con, "UPDATE messages SET opened='yes' WHERE user_to='$userLoggedIn' AND user_from='$otherUser'");
 
             $get_messages_query = mysqli_query($this->con, "SELECT * FROM messages WHERE (user_to='$userLoggedIn' AND user_from='$otherUser') OR (user_to='$otherUser' AND user_from='$userLoggedIn')");
-
             while ($row = mysqli_fetch_array($get_messages_query)) {
                 $user_to = $row['user_to'];
                 $user_from = $row['user_from'];
@@ -53,7 +52,7 @@
                 $div_top = ($user_to == $userLoggedIn) ? "<div class='message' id='green'>"  : "<div class='message' id='blue'>";
                 $data .= $div_top . $body . "</div><br><br>";
             }
-        
+            return $data;
         }
 
         public function getConversations() {
@@ -62,22 +61,22 @@
             $convos = array();
             $query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn' ORDER BY id DESC");
 
-            while($row=mysqli_fetch_array($query)) {
-                $user_to_push = ($row['user_to'] != $userLoggedIn) ? $row['$user_to'] : $row['user_from'];
+            while($row =  mysqli_fetch_array($query)) {
+                $user_to_push = ($row['user_to'] != $userLoggedIn) ? $row['user_to'] : $row['user_from'];
                 if (!in_array($user_to_push, $convos)) {
                     array_push($convos, $user_to_push);
                 }
             }
 
             foreach($convos as $username) {
-                $user_found_obj = new User($con, $username);
+                $user_found_obj = new User($this->con, $username);
                 $latest_message_details = $this->getLatestMessage($userLoggedIn, $username);
 
                 $dots = (strlen($latest_message_details[1]) >= 12) ? '...' : '';
                 $split = str_split($latest_message_details[1], 12);
                 $split = $split[0] . $dots;
 
-                $returnStr .= '<a href="messages.php?u=$username"><div class="user_found_messages"><img src="' . $user_found_obj->getProfilePic() . '" style="border-raidus: 5px; margin-right: 5px;" >' . $user_found_obj->getFirstAndLastName() . '<span class="timestamp_smaller" id="grey">' . $latest_message_details[2] . '</span><p id="grey" style="margin: 0">' . $latest_message_details[0] . $split . '</p></div></a>';
+                $returnStr .= '<a href="messages.php?u=' . $username . '"><div class="user_found_messages"><img src="' . $user_found_obj->getProfilePic() . '" style="border-raidus: 5px; margin-right: 5px;" >' . $user_found_obj->getFirstAndLastName() . '&nbsp;<span class="timestamp_smaller" id="grey">' . $latest_message_details[2] . '</span><p id="grey" style="margin: 0">' . $latest_message_details[0] . $split . '</p></div></a>';
             }
 
             return $returnStr;
@@ -89,7 +88,7 @@
 
             $row = mysqli_fetch_array($query);
 
-            $sent_by = ($rows['user_to'] == $userLoggedIn) ? "They said: " : "You said: ";
+            $sent_by = ($row['user_to'] == $userLoggedIn) ? "They said: " : "You said: ";
 
             $date_time_now = date('Y-m-d H:i:s');
             $start_date = new DateTime($row['date']);
