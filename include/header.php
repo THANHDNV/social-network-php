@@ -2,6 +2,7 @@
     require_once 'config/config.php';
     include_once("include/classes/User.php");
     include_once("include/classes/Post.php");
+    include_once("include/classes/Message.php");
     
     if (isset($_SESSION['username'])) {
         $userLoggedIn = $_SESSION['username'];
@@ -26,7 +27,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src='assets/js/bootstrap.bundle.min.js'></script>
     <script src="assets/js/bootbox.min.js"></script>
-    <script src='assets/js/demo.js'></script>
+    <script src='assets/js/swiftfeed.js'></script>
     <script src='assets/js/jquery.jcrop.js'></script>
     <script src="assets/js/jcrop_bits.js"></script>
     

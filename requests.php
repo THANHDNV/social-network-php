@@ -2,7 +2,7 @@
     include_once('include/header.php');
 ?>
 
-<div class='main_column column' id='main_column'>
+<div class='main-column column' id='main-column'>
     <h4>Friend Request</h4>
     <?php
 
