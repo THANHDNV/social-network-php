@@ -440,3 +440,7 @@ textarea:focus {
 #profile_nav a:hover {
     border-bottom: none;
 }
+
+.tab-content {
+    margin-top: 25px;
+}

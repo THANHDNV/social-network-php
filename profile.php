@@ -1,6 +1,8 @@
 <?php
     include_once("include/header.php");
 
+    $message_obj  = new Message($con, $userLoggedIn);
+
     if (isset($_GET['profile_username'])) {
         $username = $_GET['profile_username'];
         $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username'");
@@ -12,11 +14,29 @@
     if (isset($_POST['remove_friend'])) {
         $user = new User($con, $userLoggedIn);
         $user->removeFriend($username);
-    } else if (isset($_POST['add_friend'])) {
+    }
+    if (isset($_POST['add_friend'])) {
         $user = new User($con, $userLoggedIn);
         $user->sendRequest($username);
-    } else if (isset($_POST['respond_request'])) {
+    }
+    if (isset($_POST['respond_request'])) {
         header("Location: requests.php");
+    }
+    if (isset($_POST['post_message'])) {
+        if (isset($_POST['message_body'])) {
+            $body = mysqli_real_escape_string($con, $_POST['message_body']);
+            $date = date('Y-m-d H:i:s');
+            $message_obj->sendMessage($username, $body, $date);
+        }
+        ?>
+
+        <script>
+            $(function(){
+                $('#profileTabs a[href="#message_div"]').tab('show');
+            })
+        </script>
+
+        <?php
     }
 ?>
     <style>
@@ -69,23 +89,53 @@
     </div>
     <div class='profile-main-column column'>
         <!--navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light" id='profile_nav'>
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Profile</a>
-            <a class="nav-item nav-link" href="#">Messages</a>
-            </div>
-        </div>
-        </nav>
+        <ul class="nav nav-tabs" role='tablist' id='profileTabs'>
+            <li class="nav-item">
+                <a class="nav-link active" href="#newsfeed_div" aria-controls='newsfeed_div' role='tab' data-toggle='tab'>Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#about_div" aria-controls='about_div' role='tab' data-toggle='tab'>Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#messages_div" aria-controls='messages_div' role='tab' data-toggle='tab'>Link</a>
+            </li>
+        </ul>
 
-        <div class='posts_area'></div>
-        <img id='loading' src='assets/images/icons/loading.gif'>
-        
+        <div class='tab-content'>
+
+            <div role="tabpanel" class='tab-pane fade in active' id='newsfeed_div'>
+                <div class='posts_area'></div>
+                <img id='loading' src='assets/images/icons/loading.gif'>
+            </div>
+
+            <div role="tabpanel" class='tab-pane fade' id='about_div'>
+                
+            </div>
+
+            <div role="tabpanel" class='tab-pane fade' id='messages_div'>
+                <?php
+                    $profile_user_obj = new User($con, $username);
+                    echo '<h4>You and <a href="' . $username . '">' . $profile_user_obj->getFirstAndLastName() . '</a></h4><hr><br> ';
+                    echo "<div class='loaded_messages' id='scroll_messages'>";
+
+                    echo $message_obj->getMessages($username);
+                    echo '</div>';
+                ?>
+                <div class='message_post'>
+                    <form action="" method='POST'>
+                        <?php
+                            echo '<textarea name="message_body" id="message_textarea" placeholder="Write your message..."></textarea>';
+                            echo "<input type='submit' name='post_message' class='info' id='message_submit' value='Send'>";
+                        ?>
+                    </form>
+                </div>
+
+                <script>
+                    var div = document.getElementById("scroll_messages");
+                    div.scrollTop = div.scrollHeight;
+                </script>
+            </div>
+        </div> 
     </div>
 
     <div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
