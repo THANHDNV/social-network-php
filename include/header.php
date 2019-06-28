@@ -40,14 +40,25 @@
         </div>
 
         <nav>
+            <?php
+
+                $messages = new Message($con, $userLoggedIn);
+                $num_messages = $messages->getUnreadNumber();
+
+            ?>
             <a href='<?php echo $userLoggedIn ?>'>
                 <?php echo $user['first_name'] ?>
             </a>
             <a href='index.php'>
                 <i class="fa fa-home fa-lg"></i>
             </a>
-            <a href='javascript:void(0)' oclick="getDropdownData(<?php echo $userLoggedIn ?>, 'message')">
+            <a href='javascript:void(0)' onclick="getDropdownData('<?php echo $userLoggedIn ?>', 'message')">
                 <i class="fa fa-envelope fa-lg"></i>
+                <?php
+                    if ($num_messages != 0) {
+                        echo "<span class='notification_badge' id='unread_message'>" . $num_messages .  "</span>";
+                    }
+                ?>
             </a>
             <a href='#'>
                 <i class="fa fa-bell-o fa-lg"></i>
@@ -71,13 +82,13 @@
         var userLoggedIn = '<?php echo $userLoggedIn ?>'
 
         $(document).ready(function() {
-            $(window).scroll(function() {
-                var height = $('.dropdown_data_window').height();
+            $('.dropdown_data_window').scroll(function() {
+                var inner_height = $('.dropdown_data_window').height();
                 var scroll_top = $('.dropdown_data_window').scrollTop();
                 var page = $('.dropdown_data_window').find('.nextPageDropdownData').val();
                 var noMoreData = $('.dropdown_data_window').find('.noMoreDropdownData').val();
 
-                if ((scroll_top + inner_height >= $('#.dropdown_data_window')[0].scrollHeight)) && noMoreData == 'false') {
+                if ((scroll_top + inner_height >= $('.dropdown_data_window')[0].scrollHeight) && noMoreData == 'false') {
 
                     var pageName;
                     var type = $('#dropdown_data_type').val();
@@ -89,16 +100,15 @@
                     }
 
                     var ajaxReq = $.ajax({
-                        url: "include/handlers/ajax_load_posts.php",
+                        url: "include/handlers/" + pageName,
                         method: "POST",
                         data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
                         cache: false,
                         success: function(response) {
-                            $('.posts_area').find('.nextPage').remove()
-                            $('.posts_area').find('.noMorePosts').remove()
+                            $('.dropdown_data_window').find('.nextPageDropdownData').remove()
+                            $('.dropdown_data_window').find('.noMoreDropdownData').remove()
 
-                            $('#loading').hide();
-                            $('.posts_area').append(response)
+                            $('.dropdown_data_window').append(response)
                         }
                     })
                 }

@@ -26,7 +26,9 @@ function getUser(value, user) {
 }
 
 function getDropdownData(user, type) {
-    if ($('#dropdown_data_window').css('height') == "0px") {
+    console.log($('.dropdown_data_window').css('height'))
+    if ($('.dropdown_data_window').css('height') == "0px") {
+        console.log(2)
         var pageName;
 
         if (type == 'notification ') {
@@ -39,19 +41,19 @@ function getDropdownData(user, type) {
         var ajaxReq = $.ajax({
             method: 'POST',
             url: 'include/handlers/' + pageName,
-            data: 'page=1&user=' + user,
+            data: 'page=1&userLoggedIn=' + user,
             cache: false,
             success: function(response) {
-                $('#dropdown_data_window').html(response);
-                $('#dropdown_data_window').css({'padding': '0px', 'height': '280px;', 'border': '1px solid #dadada'})
+                $('.dropdown_data_window').html(response);
+                $('.dropdown_data_window').css({'padding': '0px', 'height': '280px', 'border': '1px solid #dadada'})
                 $('#dropdown_data_type').val(type);
             },
-            error: function() {
-
+            error: function(error) {
+                console.log(error)
             }
         })
     } else {
-        $('#dropdown_data_window').html('');
-        $('#dropdown_data_window').css({'padding': '0px', 'height': '0px;', 'border': 'none'})
+        $('.dropdown_data_window').html('');
+        $('.dropdown_data_window').css({'padding': '0px', 'height': '0px', 'border': 'none'})
     }
 }
