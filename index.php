@@ -54,33 +54,35 @@
                     $('.posts_area').html(data)
                 }
             })
+
+            $(window).scroll(function() {
+                var height = $('.posts_area').height();
+                var scroll_top = $(this).scrollTop();
+                var page = $('.posts_area').find('.nextPage').val();
+                var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+
+                if ((document.body.scrollHeight == Math.ceil(document.body.scrollTop + window.innerHeight)) && noMorePosts == 'false') {
+                    $('#loading').show();
+                    var ajaxReq = $.ajax({
+                        url: "include/handlers/ajax_load_posts.php",
+                        method: "POST",
+                        data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+                        cache: false,
+                        success: function(response) {
+                            $('.posts_area').find('.nextPage').remove()
+                            $('.posts_area').find('.noMorePosts').remove()
+
+                            $('#loading').hide();
+                            $('.posts_area').append(response)
+                        }
+                    })
+                }
+
+                return false;
+            })
         })
 
-        $(window).scroll(function() {
-            var height = $('.posts_area').height();
-            var scroll_top = $(this).scrollTop();
-            var page = $('.posts_area').find('.nextPage').val();
-            var noMorePosts = $('.posts_area').find('.noMorePosts').val();
-
-            if ((document.body.scrollHeight == Math.ceil(document.body.scrollTop + window.innerHeight)) && noMorePosts == 'false') {
-                $('#loading').show();
-                var ajaxReq = $.ajax({
-                    url: "include/handlers/ajax_load_posts.php",
-                    method: "POST",
-                    data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
-                    cache: false,
-                    success: function(response) {
-                        $('.posts_area').find('.nextPage').remove()
-                        $('.posts_area').find('.noMorePosts').remove()
-
-                        $('#loading').hide();
-                        $('.posts_area').append(response)
-                    }
-                })
-            }
-
-            return false;
-        })
+        
     </script>
 </div>
 </body>

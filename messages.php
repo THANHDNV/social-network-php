@@ -54,26 +54,26 @@
         } else {
             echo '<h4>New Message</h4>';
         }
-        ?>
-        <div class='message_post'>
-            <form action="" method='POST'>
-                <?php
-                    if ($user_to == 'new') {
-                        echo "Select the friend you would like to message <br><br>";
-                        echo "To: <input type='text' onkeyUp='getUser(this.value,\"" . $userLoggedIn . "\")' name='q' placeholder='Name' autocomplete='off' id='search_text_input' >";
-                        echo "<div class='results'></div>";
-                    } else {
-                        echo '<textarea name="message_body" id="message_textarea" placeholder="Write your message..."></textarea>';
-                        echo "<input type='submit' name='post_message' class='info' id='message_submit' value='Send'>";
-                    }
-                ?>
-            </form>
-        </div>
+    ?>
+    <div class='message_post'>
+        <form action="" method='POST'>
+            <?php
+                if ($user_to == 'new') {
+                    echo "Select the friend you would like to message <br><br>";
+                    echo "To: <input type='text' onkeyUp='getUser(this.value,\"" . $userLoggedIn . "\")' name='q' placeholder='Name' autocomplete='off' id='search_text_input' >";
+                    echo "<div class='results'></div>";
+                } else {
+                    echo '<textarea name="message_body" id="message_textarea" placeholder="Write your message..."></textarea>';
+                    echo "<input type='submit' name='post_message' class='info' id='message_submit' value='Send'>";
+                }
+            ?>
+        </form>
+    </div>
 
-        <script>
-            var div = document.getElementById("scroll_messages");
-            div.scrollTop = div.scrollHeight;
-        </script>
+    <script>
+        var div = document.getElementById("scroll_messages");
+        div.scrollTop = div.scrollHeight;
+    </script>
 </div>
 
 <div class='user-details column' id='conversations'>
