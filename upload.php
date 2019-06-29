@@ -228,4 +228,7 @@ if (isset($_POST['x'])){
  <?php } ?>
  
  
-    <br /><br />
+	<br /><br />
+	</div>
+</body>
+</html>

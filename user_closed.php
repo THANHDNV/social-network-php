@@ -7,3 +7,6 @@
     This account is closed
     <a href="index.php">Click here to go back.</a>
 </div>
+</div>
+</body>
+</html>

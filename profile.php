@@ -103,7 +103,7 @@
 
         <div class='tab-content'>
 
-            <div role="tabpanel" class='tab-pane fade in active' id='newsfeed_div'>
+            <div role="tabpanel" class='tab-pane in active' id='newsfeed_div'>
                 <div class='posts_area'></div>
                 <img id='loading' src='assets/images/icons/loading.gif'>
             </div>

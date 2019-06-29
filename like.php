@@ -1,5 +1,6 @@
 <?php
     require_once 'config/config.php';
+    include_once('include/classes/Notification.php');
     
     if (isset($_SESSION['username'])) {
         $userLoggedIn = $_SESSION['username'];
@@ -55,6 +56,10 @@
         $insert_user_query = mysqli_query($con, "INSERT INTO likes VALUES('','$userLoggedIn', '$post_id')");
 
         //insert notification
+        if ($user_liked != $userLoggedIn) {
+            $notification = new Notification($this->con, $userLoggedIn);
+            $notification->insertNoti($post_id, $user_liked, 'like');
+        }
     }
 
     //unlike button

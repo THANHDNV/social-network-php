@@ -475,3 +475,129 @@ textarea:focus {
     left: 8px;
     top: -5px;
 }
+
+.resultDisplayNotification {
+    height: auto;
+    color: #1485db;
+    padding-bottom: 7px;
+}
+
+.resultDisplayNotification img {
+    height: 40px;
+    border-radius: 5px;
+    margin: 1px 12px 1px 12px;
+    float: left;
+}
+
+.timestamp_smaller {
+    font-size: 85%;
+    margin: 0px;
+}
+
+.search {
+    margin: 8px 0 0 15%;
+}
+
+.search #search_text_input {
+    border: thin solid #e5e5e5;
+    float: left;
+    height: 23px;
+    outline: 0;
+    width: 100px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.button_holder {
+    background-color: #f1f1f1;
+    border: thin solid #e5e5e5;
+    cursor: pointer;
+    float: left;
+    height: 23px;
+    text-align: center;
+    width: 50px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.button_holder i {
+    font-size: 17px;
+    margin-top: 4px;
+}
+
+.search_results {
+    background-color: white;
+    border: 1px solid #dadada;
+    border-bottom: none;
+    border-top: none;
+    margin-top: 21px;
+}
+
+.search_results_footer {
+    padding: 7px 4px 0px 4px;
+    height: 30px;
+    border: 1px solid #dadada;
+    border-top: none;
+    background-color: #20aae5;
+    text-align: center;
+}
+.search_results_footer a {
+    color: white;
+}
+
+.search_result {
+    padding: 10px;
+    height: 100px;
+}
+
+.search_result + hr {
+    margin-bottom: 0px
+}
+
+.searchPageFriendsButtons {
+    float: right;
+}
+
+.searchPageFriendsButtons input[type='submit'] {
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    color: white;
+}
+
+.result_profile_pic {
+    float: left;
+    margin-right: 10px;
+}
+
+#small_profile_pic {
+    height: 55px;
+    margin: 1px 12px 0 2px;
+    float: left;
+}
+
+.settings_input {
+    border: 1px solid #ccc;
+    height: 20px;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.settings_submit {
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    color: white;
+}
+
+.postedImage img {
+    max-height: 300px;
+    max-width: 100%;
+    display: block;
+    margin: 5px auto;
+}
