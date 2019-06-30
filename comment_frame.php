@@ -65,7 +65,7 @@
             $notification->insertNoti($post_id, $user_to, 'profile_comment');
         }
 
-        $get_comments = mysqli_query($con, "SELECT * FROM comments WHERE posted_id='$post_id'");
+        $get_comments = mysqli_query($con, "SELECT * FROM comments WHERE post_id='$post_id'");
         $notified_user = array();
         while ($row=mysqli_fetch_array($get_comments)) {
             if ($row['posted_by'] != $posted_to && $row['posted_by'] != $user_to && $row['posted_by'] != $userLoggedIn && in_array($row['posted_by'],$notified_user)) {
