@@ -130,7 +130,7 @@
                         $time_message = $interval->s . ' seconds ago';
                     }
                 }
-                $str .= "<div class='status_post' id='post-" . $page . "-" . ($count-1) . "' onClick='javascript:toggle$id()'>
+                $str .= "<div class='status_post' onClick='javascript:toggle$id()'>
                         <div class='post_profile_pic'>
                             <img src='$profile_pic' width='50'>
                         </div>
@@ -520,6 +520,7 @@
                     $body = $row['body'];
                     $added_by = $row['added_by'];
                     $date_time = $row['date'];
+                    $image = $row['image'];
 
                     if ($num_iteration++ < $start) {
                         continue;
@@ -618,6 +619,13 @@
                             $time_message = $interval->s . ' seconds ago';
                         }
                     }
+
+                    if ($image != "") {
+                        $imageDiv = "<div class='postedImage'><img src='" . $image . "'></div>";
+                    } else {
+                        $imageDiv = "";
+                    }
+
                     $str .= "<div class='status_post' id='post-" . $page . "-" . ($count-1) . "' onClick='javascript:toggle$id()'>
                             <div class='post_profile_pic'>
                                 <img src='$profile_pic' width='50'>
@@ -630,6 +638,7 @@
                             <div id='$id' class='post_body'>
                                 $body
                                 <br>
+                                $imageDiv
                                 <br>
                                 <br>
                             </div>

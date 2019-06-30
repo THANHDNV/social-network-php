@@ -58,10 +58,10 @@
         $insert_post = mysqli_query($con, "INSERT INTO comments VALUES('', '$post_body', '$userLoggedIn', '$posted_to', '$date_time_now', 'no', '$post_id')");
 
         if ($posted_to != $userLoggedIn) {
-            $notification = new Notification($this->con, $userLoggedIn);
+            $notification = new Notification($con, $userLoggedIn);
             $notification->insertNoti($post_id, $posted_to, 'comment');
         } else if ($user_to != 'none'  && $user_to != $userLoggedIn) {
-            $notification = new Notification($this->con, $userLoggedIn);
+            $notification = new Notification($con, $userLoggedIn);
             $notification->insertNoti($post_id, $user_to, 'profile_comment');
         }
 
@@ -70,7 +70,7 @@
         while ($row=mysqli_fetch_array($get_comments)) {
             if ($row['posted_by'] != $posted_to && $row['posted_by'] != $user_to && $row['posted_by'] != $userLoggedIn && in_array($row['posted_by'],$notified_user)) {
                 array_push($notified_user, $row['posted_by']);
-                $notification = new Notification($this->con, $userLoggedIn);
+                $notification = new Notification($con, $userLoggedIn);
                 $notification->insertNoti($post_id, $row['posted_by'], 'comment_non_owner');
             }
         }

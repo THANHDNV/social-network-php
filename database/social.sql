@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2019 at 09:30 PM
+-- Generation Time: Jun 30, 2019 at 07:04 PM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `social`
 --
-CREATE DATABASE IF NOT EXISTS `social` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `social`;
 
 -- --------------------------------------------------------
 
@@ -78,7 +76,13 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`id`, `username`, `post_id`) VALUES
-(2, 'thanh_dao_0', 23);
+(2, 'thanh_dao_0', 23),
+(3, 'thanh_dao_0', 27),
+(4, 'thanh_dao_0', 13),
+(5, 'thanh_dao_0', 12),
+(9, 'thanh_dnv_0', 18),
+(11, 'thanh_dnv_0', 17),
+(12, 'thanh_dnv_0', 15);
 
 -- --------------------------------------------------------
 
@@ -122,12 +126,19 @@ CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
   `user_to` varchar(50) NOT NULL,
   `user_from` varchar(50) NOT NULL,
-  `message` int(11) NOT NULL,
+  `message` varchar(150) NOT NULL,
   `link` text NOT NULL,
   `datetime` datetime NOT NULL,
   `opened` varchar(3) NOT NULL,
   `viewed` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `user_to`, `user_from`, `message`, `link`, `datetime`, `opened`, `viewed`) VALUES
+(9, 'thanh_dao_0', 'thanh_dnv_0', 'Thanh David liked on your post', 'post.php?id=15', '2019-06-30 23:58:37', 'no', 'no');
 
 -- --------------------------------------------------------
 
@@ -163,18 +174,21 @@ INSERT INTO `posts` (`id`, `body`, `added_by`, `user_to`, `date`, `user_closed`,
 (9, 'just many does it take...?', 'thanh_dao_0', 'none', '2019-06-23 16:07:59', 'no', 'no', 0, ''),
 (10, 'common...', 'thanh_dao_0', 'none', '2019-06-23 16:08:05', 'no', 'no', 0, ''),
 (11, 'finally yesssssssssssssssssssssssssssss', 'thanh_dao_0', 'none', '2019-06-23 16:18:47', 'no', 'no', 0, ''),
-(12, 'Hey guys', 'thanh_dnv_0', 'none', '2019-06-24 00:07:15', 'no', 'no', 0, ''),
-(13, 'Anybody?', 'thanh_dnv_0', 'none', '2019-06-24 00:13:04', 'no', 'no', 0, ''),
+(12, 'Hey guys', 'thanh_dnv_0', 'none', '2019-06-24 00:07:15', 'no', 'no', 1, ''),
+(13, 'Anybody?', 'thanh_dnv_0', 'none', '2019-06-24 00:13:04', 'no', 'no', 1, ''),
 (14, 'welcome', 'thanh_dao_0', 'none', '2019-06-24 00:14:44', 'no', 'no', 0, ''),
-(15, 'Feel free to post anything on here', 'thanh_dao_0', 'none', '2019-06-24 00:24:16', 'no', 'no', 0, ''),
+(15, 'Feel free to post anything on here', 'thanh_dao_0', 'none', '2019-06-24 00:24:16', 'no', 'no', 1, ''),
 (16, 'so that I can improve the website', 'thanh_dao_0', 'none', '2019-06-24 00:24:53', 'no', 'no', 0, ''),
-(17, 'Lots of bugs are on this site...', 'thanh_dao_0', 'none', '2019-06-24 00:25:28', 'no', 'no', 0, ''),
-(18, 'so just tell me if you need any improvement...', 'thanh_dao_0', 'none', '2019-06-24 00:25:50', 'no', 'no', 0, ''),
+(17, 'Lots of bugs are on this site...', 'thanh_dao_0', 'none', '2019-06-24 00:25:28', 'no', 'no', 1, ''),
+(18, 'so just tell me if you need any improvement...', 'thanh_dao_0', 'none', '2019-06-24 00:25:50', 'no', 'no', 1, ''),
 (19, 'so I just need to post something... right...?', 'david_dnv_2', 'none', '2019-06-24 23:27:07', 'no', 'no', 0, ''),
 (20, 'abc', 'thanh_dnv_0', 'thanh_dao_0', '2019-06-26 23:26:18', 'no', 'yes', 0, ''),
 (21, 'hey man', 'thanh_dnv_0', 'thanh_dao_0', '2019-06-29 12:27:29', 'no', 'no', 0, ''),
 (22, 'so the last one got sth wrong... so I just repost sth :v', 'thanh_dnv_0', 'thanh_dao_0', '2019-06-29 12:29:26', 'no', 'no', 0, ''),
-(23, 'it\'s still messed up :v', 'thanh_dnv_0', 'thanh_dao_0', '2019-06-29 12:30:04', 'no', 'no', 1, '');
+(23, 'it\'s still messed up :v', 'thanh_dnv_0', 'thanh_dao_0', '2019-06-29 12:30:04', 'no', 'no', 1, ''),
+(27, 'sth else...', 'thanh_dnv_0', 'none', '2019-06-30 13:26:50', 'no', 'no', 1, 'assets/images/posts/5d18562adce0063843111_p0.png'),
+(28, 'so this is something...', 'dave_dnv', 'none', '2019-06-30 14:22:22', 'no', 'no', 0, ''),
+(29, 'hey guy! how is it going!!', 'dave_dnv', 'none', '2019-06-30 14:24:21', 'no', 'no', 0, '');
 
 -- --------------------------------------------------------
 
@@ -186,6 +200,13 @@ CREATE TABLE `trends` (
   `title` varchar(50) NOT NULL,
   `hits` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `trends`
+--
+
+INSERT INTO `trends` (`title`, `hits`) VALUES
+('Guy', 1);
 
 -- --------------------------------------------------------
 
@@ -213,11 +234,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `signup_date`, `profile_pic`, `num_posts`, `num_likes`, `user_closed`, `friend_array`) VALUES
-(1, 'Thanh', 'Dao', 'thanh_dao_0', 'test@local.com', 'e99a18c428cb38d5f260853678922e03', '2019-06-17', 'assets/images/profile_pics/default/head_emerald.png', 16, 0, 'no', ',thanh_dnv_0,'),
-(2, 'Thanh', 'Dnv', 'thanh_dnv_0', 'thanh@local.com', '827ccb0eea8a706c4c34a16891f84e7b', '2019-06-23', 'assets/images/profile_pics/thanh_dnv_062f67ebc5d317044389217b564a5e63fn.jpeg', 6, 1, 'no', ',thanh_dao_0,'),
+(1, 'Thanh', 'Dao', 'thanh_dao_0', 'test@local.com', 'e99a18c428cb38d5f260853678922e03', '2019-06-17', 'assets/images/profile_pics/default/head_emerald.png', 16, 3, 'no', ',thanh_dnv_0,'),
+(2, 'Thanh', 'David', 'thanh_dnv_0', 'thanh@local.com', 'e99a18c428cb38d5f260853678922e03', '2019-06-23', 'assets/images/profile_pics/thanh_dnv_02c89b7fe0c2dec1d16d29c82edbfd6c1n.jpeg', 10, 4, 'no', ',thanh_dao_0,'),
 (3, 'David', 'Dnv', 'david_dnv', 'dave@local.com', '827ccb0eea8a706c4c34a16891f84e7b', '2019-06-24', 'assets/images/profile_pics/default/head_emerald.png', 0, 0, 'no', ','),
 (4, 'David', 'Dnv', 'david_dnv_1', 'dave2@test.com', '827ccb0eea8a706c4c34a16891f84e7b', '2019-06-24', 'assets/images/profile_pics/default/head_pete_river.png', 0, 0, 'no', ',dave_dnv,david_dnv_2,'),
-(5, 'Dave', 'Dnv', 'dave_dnv', 'dave3@local.com', '827ccb0eea8a706c4c34a16891f84e7b', '2019-06-24', 'assets/images/profile_pics/default/head_emerald.png', 0, 0, 'no', ',david_dnv_1,'),
+(5, 'Dave', 'Dnv', 'dave_dnv', 'dave3@local.com', '827ccb0eea8a706c4c34a16891f84e7b', '2019-06-24', 'assets/images/profile_pics/default/head_emerald.png', 2, 0, 'no', ',david_dnv_1,'),
 (6, 'David', 'Dnv', 'david_dnv_2', 'david3@local.com', '827ccb0eea8a706c4c34a16891f84e7b', '2019-06-24', 'assets/images/profile_pics/default/head_pete_river.png', 1, 0, 'no', ',david_dnv_1,');
 
 --
@@ -280,7 +301,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -292,13 +313,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `users`

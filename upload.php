@@ -215,11 +215,6 @@ if (isset($_POST['x'])){
 	<?php 
 	} ?>
 </div>
- 
- 
- 
- 
- 
  <?php if($result_path) {
 	 ?>
      

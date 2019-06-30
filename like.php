@@ -57,7 +57,7 @@
 
         //insert notification
         if ($user_liked != $userLoggedIn) {
-            $notification = new Notification($this->con, $userLoggedIn);
+            $notification = new Notification($con, $userLoggedIn);
             $notification->insertNoti($post_id, $user_liked, 'like');
         }
     }

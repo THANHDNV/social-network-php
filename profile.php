@@ -93,11 +93,11 @@
             <li class="nav-item">
                 <a class="nav-link active" href="#newsfeed_div" aria-controls='newsfeed_div' role='tab' data-toggle='tab'>Active</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="#about_div" aria-controls='about_div' role='tab' data-toggle='tab'>Link</a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="#messages_div" aria-controls='messages_div' role='tab' data-toggle='tab'>Link</a>
+                <a class="nav-link" href="#messages_div" aria-controls='messages_div' role='tab' data-toggle='tab'>Messages</a>
             </li>
         </ul>
 
@@ -108,9 +108,9 @@
                 <img id='loading' src='assets/images/icons/loading.gif'>
             </div>
 
-            <div role="tabpanel" class='tab-pane fade' id='about_div'>
+            <!-- <div role="tabpanel" class='tab-pane fade' id='about_div'>
                 
-            </div>
+            </div> -->
 
             <div role="tabpanel" class='tab-pane fade' id='messages_div'>
                 <?php

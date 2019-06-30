@@ -22,19 +22,19 @@
 
             switch($type) {
                 case 'comment':
-                    $message = $userLoggedIn . ' commented on your post';
+                    $message = $userLoggedInName . ' commented on your post';
                     break;
                 case 'like':
-                    $message = $userLoggedIn . ' liked on your post';
+                    $message = $userLoggedInName . ' liked on your post';
                     break;
                 case 'profile_post':
-                    $message = $userLoggedIn . ' posted on your profile';
+                    $message = $userLoggedInName . ' posted on your profile';
                     break;
                 case 'comment_non_owner':
-                    $message = $userLoggedIn . ' commented on a post you commented on';
+                    $message = $userLoggedInName . ' commented on a post you commented on';
                     break;
                 case 'profile_comment':
-                    $message = $userLoggedIn . ' commented on your profile';
+                    $message = $userLoggedInName . ' commented on your profile';
                     break;
             }
 
