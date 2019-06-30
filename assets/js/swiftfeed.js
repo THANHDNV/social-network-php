@@ -21,15 +21,18 @@ $(document).ready(function() {
 
     $('#search_text_input').focus(function() {
         if (window.matchMedia("(min-width: 800px)").matches) {
-            $(this).animate({width: '250px  '}, 500);
+            $(this).animate({width: '250px'}, 500);
         }
     })
 
     $(document).click(function(e) {
         if (e.target.class != 'search_results' && e.target.id != 'search_text_input') {
+            $('.search_results').html("");
+            $('.search_results_footer').html('')
             $('.search_results_footer').html('');
             $('.search_results_footer').toggleClass('search_results_footer_empty');
             $('.search_results_footer').toggleClass('search_results_footer');
+            $('#search_text_input').animate({width: '100px'}, 500);
         }
 
         if (e.target.class != 'dropdown_data_window') {
@@ -54,7 +57,7 @@ function getDropdownData(user, type) {
         console.log(2)
         var pageName;
 
-        if (type == 'notification ') {
+        if (type == 'notification') {
             pageName = 'ajax_load_notifications.php';
             $('span').remove('#unread_notification');
         } else if (type == 'message') {

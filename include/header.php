@@ -42,7 +42,7 @@
 
         <div class='search'>
             <form action="search.php" method='get' name='search_form'>
-                <input type='text' id='search_text_input' onkeyup='getLiveSearchResult(this.value, <?php echo $userLoggedIn ?>)' value='' name='q' placeholder='Search...' autocomplete='off'>
+                <input type='text' id='search_text_input' onkeyup='getLiveSearchResult(this.value, "<?php echo $userLoggedIn ?>")' value='' name='q' placeholder='Search...' autocomplete='off'>
 
                 <div class='button_holder'>
                  <i class="fa fa-search fa-lg"></i>
@@ -124,7 +124,7 @@
 
                 if ((scroll_top + inner_height >= $('.dropdown_data_window')[0].scrollHeight) && noMoreData == 'false') {
 
-                    var pageName;
+                    var pageName = '';
                     var type = $('#dropdown_data_type').val();
 
                     if (type == 'notification') {

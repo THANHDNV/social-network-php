@@ -209,7 +209,7 @@
                 }
 
                 $query = mysqli_query($this->con, "INSERT INTO posts VALUES('','$body', '$added_by', '$user_to', '$date_added', 'no', 'no', 'no', '$imageName')");
-                $return_id = mysqli_insert_id($query);
+                $return_id = mysqli_insert_id($this->con);
 
                 if ($user_to != 'none') {
                     $notification = new Notification($this->con, $added_by);
@@ -429,7 +429,7 @@
                     }
 
                     if ($image != "") {
-                        $imageDiv = "<div class='postedImage'><img src='" . $imageName . "'></div>";
+                        $imageDiv = "<div class='postedImage'><img src='" . $image . "'></div>";
                     } else {
                         $imageDiv = "";
                     }
