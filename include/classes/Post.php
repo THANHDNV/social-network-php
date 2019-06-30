@@ -257,8 +257,9 @@
 
                 $stopWords = preg_split('/[\s,]+/', $stopWords);
 
-                $no_punctuation = preg_replace('/[^a-zA-Z0-9]+/', '', $body);
+                $no_punctuation = preg_replace('/[^a-zA-Z0-9]+/', ' ', $body);
                 if(strpos($no_punctuation, "height") === false &&strpos($no_punctuation, "weight") === false && strpos($no_punctuation, "http") === false) {
+
                     $no_punctuation = preg_split('/[\s,]+/', $no_punctuation);
 
                     foreach($stopWords as $value) {
@@ -662,16 +663,15 @@
         
                         <?php
                 }
-            }
-
-            if ($count > $limit) {
-                $str .= '<input type="hidden" class="nextPage" value="' . ($page +  1) . '">
-                <input type="hidden" class="noMorePosts" value="false">';
+                if ($count > $limit) {
+                    $str .= '<input type="hidden" class="nextPage" value="' . ($page +  1) . '">
+                    <input type="hidden" class="noMorePosts" value="false">';
+                } else {
+                    $str .= '<input type="hidden" class="noMorePosts" value="true"><p style="text-align: center">No more post to show</p>';
+                }
             } else {
-                $str .= '<input type="hidden" class="noMorePosts" value="true"><p style="text-align: center">No more post to show</p>';
+                $str .= '<div style="text-align: center">No posts.</div>';
             }
-            
-            
             echo $str;            
         }
     }
