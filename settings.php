@@ -1,7 +1,7 @@
 <?php
 
     include_once('include/header.php');
-    //include_once('include/settings_handler.php');
+    include_once('include/form_handlers/settings_handler.php');
 
 
 ?>
@@ -12,7 +12,9 @@
     ?>
     <br>
     <a href="upload.php">Upload new profile picture</a>
+    
     <br><br><br>
+
     <p>Modifying the value and click 'Update Details'</p>
     <?php
         $user_obj = new User($con, $userLoggedIn);
@@ -25,6 +27,7 @@
         <?php echo isset($message) ? $message: "" ?>
         <input type="submit" name='update_details' id='save_details' value='Update Details' class='info settings_submit'>
     </form>
+
     <h4>Change Password</h4>
     <form action="settings.php" method='POST'>
         Old Password: <input type="password" name='password'class='settings_input'><br>
@@ -33,6 +36,7 @@
         <?php echo isset($change_password_message) ? $change_password_message: "" ?>
         <input type="submit" name='update_password' id='save_password' value='Change Password' class='info settings_submit'>
     </form>
+
     <h4>Close Account</h4>
     <form action='settings.php' method='POST'>
         <input type="submit" name='close_account' id='close_account' value='Close Account' class='danger settings_submit'>

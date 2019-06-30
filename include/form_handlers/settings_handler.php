@@ -1,5 +1,4 @@
 <?php
-    include_once('../config/config.php');
     if (isset($_POST['update_details'])) {
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
